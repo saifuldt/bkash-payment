@@ -7,7 +7,7 @@
     async function payWithBkash() {
       const amount = prompt("Enter amount to pay:");
 
-      const res = await fetch("http://localhost:5000/create-payment", {
+      const res = await fetch("https://bkash-payment-bkend.vercel.app/create-payment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
