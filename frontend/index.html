@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>bKash Payment</title>
+  <script>
+    async function payWithBkash() {
+      const amount = prompt("Enter amount to pay:");
+
+      const res = await fetch("http://localhost:5000/create-payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ amount })
+      });
+
+      const data = await res.json();
+      if (data && data.paymentID && data.bkashURL) {
+        window.location.href = data.bkashURL;
+      } else {
+        alert("Payment Failed");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Pay with bKash</h1>
+  <button onclick="payWithBkash()">Pay with bKash</button>
+</body>
+</html>
